@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import runChat from "../config/atom";
 
 export const Context = createContext();
@@ -11,34 +11,59 @@ const ContextProvider = (props) => {
   const [showResult, setShowResult] = useState(false);
   const [resultData, setResultData] = useState("");
 
+  const delayPara = (index, nextWord) => {
+    setTimeout(() => {
+      setResultData((prev) => prev + nextWord);
+    }, 75 * index);
+  };
+
   const onSent = async (prompt) => {
-    setLoading(true);
-    setShowResult(true);
-    setRecentPrompt(input);
-    
+    // Get the current prompt (either passed or from input)
     const currentPrompt = prompt || input;
-    console.log("Current prompt:", currentPrompt); // Debug log
     
-    if (!currentPrompt.trim()) {
+    // Validate prompt
+    if (!currentPrompt || !currentPrompt.trim()) {
       console.error("Empty prompt provided");
-      setLoading(false);
       return;
     }
-    
+
+    // Set loading and show result states
+    setLoading(true);
+    setShowResult(true);
     setRecentPrompt(currentPrompt);
-    
+
     // Add to previous prompts if not already there
-    if (currentPrompt && !prevPrompts.includes(currentPrompt)) {
-      setPrevPrompts(prev => [...prev, currentPrompt]);
+    if (!prevPrompts.includes(currentPrompt.trim())) {
+      setPrevPrompts((prev) => [...prev, currentPrompt.trim()]);
     }
 
     try {
-      console.log("Calling runChat with:", currentPrompt); // Debug log
+      console.log("Calling runChat with:", currentPrompt);
       const response = await runChat(currentPrompt);
-      console.log("Response received:", response); // Debug log
-      
+
       if (response) {
-        setResultData(response);
+        // Clear old result first
+        setResultData("");
+
+        // Format bold text by replacing **text** with <b>text</b>
+        const responseArray = response.split("**");
+        let newResponse = "";
+        for (let i = 0; i < responseArray.length; i++) {
+          if (i % 2 === 0) {
+            newResponse += responseArray[i];
+          } else {
+            newResponse += "<b>" + responseArray[i] + "</b>";
+          }
+        }
+
+        // Replace * with <br/> for line breaks
+        let formattedResponse = newResponse.split("*").join("<br/>");
+
+        // Animate word by word
+        const newResponseArray = formattedResponse.split(" ");
+        newResponseArray.forEach((word, i) => {
+          delayPara(i, word + " ");
+        });
       } else {
         console.warn("Empty response received");
         setResultData("No response received from the AI.");
@@ -48,11 +73,10 @@ const ContextProvider = (props) => {
       setResultData("⚠️ Something went wrong. Please try again.");
     } finally {
       setLoading(false);
-      setInput("");
+      setInput(""); // Clear input after sending
     }
   };
 
-  // Define the newChat function
   const newChat = () => {
     setInput("");
     setRecentPrompt("");
@@ -65,13 +89,14 @@ const ContextProvider = (props) => {
     prevPrompts,
     setPrevPrompts,
     onSent,
+    recentPrompt,
     setRecentPrompt,
     showResult,
     loading,
     resultData,
     input,
     setInput,
-    newChat
+    newChat,
   };
 
   return (
