@@ -3,7 +3,8 @@
     display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #f0f4f9;
+    background-color: #1a1a1a;
+    color: #e0e0e0; 
     padding: 25px 15px;
 }
 
@@ -48,22 +49,24 @@
     padding: 10px;
     padding-right: 40px;
     border-radius: 50px;
-    color: #282828;
+    color: #e0e0e0;
     cursor: pointer;
 }
 
 .sidebar .recent-entry:hover{
-    background-color: #e2e6eb;
+    background-color: #e0e0e0;
 }
 
 .sidebar .bottom{
     display: flex;
     flex-direction: column;
+    color: #ffff;
 }
 
 .sidebar .bottom-item{
     padding-right: 10px;
     cursor: pointer;
+    color: #ffff;
 }
 
 @media (max-width:600px){

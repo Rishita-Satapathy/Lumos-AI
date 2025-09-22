@@ -3,6 +3,7 @@
     min-height: 100vh;
     padding-bottom: 15vh;
     position: relative;
+    background-color: #121212;
 }
 .main .nav{
     display: flex;
@@ -10,7 +11,10 @@
     justify-content: space-between;
     font-size: 22px;
     padding: 20px;
-    color:#656565
+    color: #ffffff;
+}
+.main .nav .menu {
+    filter: brightness(0) invert(1);
 }
 .main .nav img{
     width: 40px;
@@ -23,14 +27,17 @@
 .main .greet{
     margin: 50px 0px;
     font-size: 56px;
-    color:#c4c7c5;
+    color: #e0e0e0;
     font-weight: 500;
     padding: 20px;
 }
 .main .greet span{
-    background: -webkit-linear-gradient(16deg,#4b90ff,#ff5546);
+    background: -webkit-linear-gradient(16deg, #1abc9c, #55efc4);
+    background: linear-gradient(16deg, #1abc9c, #55efc4);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 .main .cards{
     display: grid;
@@ -41,7 +48,8 @@
 .main .card{
     height: 200px;
     padding: 15px;
-    background-color: #f0f4f9;
+    background-color: #1e1e1e; /* darker cards */
+    color: #e0e0e0;
     border-radius: 10px;
     position: relative;
     cursor: pointer;
@@ -60,7 +68,7 @@
     font-size: 17px;
 }
 .main .card:hover{
-    background-color: #dfe4ea;
+    background-color: #2a2a2a;
 }
 .main-bottom{
     position: absolute;
@@ -75,13 +83,15 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    background-color: #f0f4f9;
+    background-color: #1e1e1e;
+    color: #e0e0e0;
     padding: 10px 20px;
     border-radius: 50px;
 }
 .search-box img{
     width: 24px;
     cursor: pointer;
+    filter: brightness(0) invert(1);
 }
 .search-box input{
     flex: 1;
@@ -90,6 +100,7 @@
     padding: 8px;
     border: none;
     font-size: 18px;
+    color: #ffffff;
 }
 .search-box div{
     display: flex;
@@ -100,7 +111,8 @@
     font-size: 13px;
     margin: 15px auto;
     text-align: center;
-    font-weight: 300%;
+    font-weight: 300;
+    color: #e0e0e0;
 
 }
 
@@ -118,6 +130,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    color: #ffffff;
 }
 .result img{
     width: 40px;
@@ -126,7 +139,7 @@
 .result-data{
     display: flex;
     align-items: start;
-    grid:20px;
+    gap: 20px;
 }
 .loader{
     width: 100%;
@@ -138,9 +151,10 @@
     border-radius: 4px;
     border: none;
     background-color: #f6f7f8;
-    background:linear-gradient(to right,#9ed8ff,#99dd,#9ed9f9);
-    background-size:800px 50px;
+    background: linear-gradient(to right, #9ed8ff, #99dddd, #9ed9f9);
+    background-size: 800px 50px;
     height: 20px;
+    animation: loader 2s infinite linear;
 }
 @keyframes loader{
     0%{
@@ -153,5 +167,10 @@
 .result-data p{
     font-size: 17px;
     font-weight: 300;
+    color:#ffffff;
     
+}
+
+.main .bottom-info span{
+    color: #ffff;
 }

@@ -21,7 +21,7 @@ const Main = () => {
     return (
         <div className='main'>
             <div className='nav'>
-                <p>Atom</p>
+                <p>Lumos</p>
                 <img src={assets.user_icon} alt="User profile" />
             </div>
             <div className='main-container'>
@@ -95,7 +95,8 @@ const Main = () => {
                         )}
                     </div>
                     <p className='bottom-info'>
-                        I'm an AI... Yeah, I can make mistakes
+                        <span>
+                        Learning everyday as an AI, mistakes are inevitable...</span>
                     </p>
                 </div>
             </div>
