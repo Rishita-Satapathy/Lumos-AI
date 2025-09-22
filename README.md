@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# Atom-AI
+
+# Lumos-AI
 
 A React-based AI chat application powered by Google's Gemini API.
 
@@ -16,12 +16,4 @@ A React-based AI chat application powered by Google's Gemini API.
 - CSS3
 - Context API for state management
 
-## Installation
 
-1. Clone the repository
-```bash
-git clone https://github.com/SIDHARTHPANIGRAHI/Atom-AI.git
-cd Atom-AI
-=======
-# Lumos-AI
->>>>>>> 89b879a9526d26159a2ad006f53a97122abe09ec
